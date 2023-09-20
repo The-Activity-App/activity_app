@@ -11,7 +11,7 @@ This is the project architecture for a simple todo app. The app will have a fron
    *  A form for signing up.
    *  A page hosting a map with a search bar and side menu.
    *  Each location returned after a search will display the name, hours, type, address and ratings of the location. 
-   The location component should alos include buttons that allow the user to favorite the location, request a status update as well as post a status update. 
+   The location component should also include buttons that allow the user to favorite the location, request a status update as well as post a status update. 
    *  The side menu features buttons that allow the user to move between the map and profile pages as well as sign out of their account. 
    *  The profile page unique to each user should display data about each favorited location. Location components display the name, address and rating of the location.
 * **State Management**:
