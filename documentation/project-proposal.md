@@ -55,11 +55,7 @@ Break down the project into smaller milestones and outline a timeline for achiev
 * By June 31: the final CSS styling will be applied.
 ___
 
-### 💽 Data Sources (if applicable): 
-If your project involves using specific data sources or APIs, mention them and explain how you plan to integrate them into your project.
+### 💽 Data Sources: 
 
-This application will utilize the WeatherAPI API to retrieve live weather data based on the user's current location. We will use the WebLocation API to get the user's current location.
+This application will utilize the Google Place Search API to search locations. The Google Place Details API will be used to retreive the data belonging to a location. The Geolocation API oferred by Google Maps will be used to get the user's current location in order to find placest nearest to the user. The Material UI Library will be used to develop the appearance of the front end of this application. 
 ___
-
-### 📓 References and Citations: 
-If you have taken inspiration from existing projects or research, provide proper references and citations to give credit to the original sources.
