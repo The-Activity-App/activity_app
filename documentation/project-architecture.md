@@ -15,8 +15,8 @@ This is the project architecture for a simple todo app. The app will have a fron
    *  The side menu features buttons that allow the user to move between the map and profile pages as well as sign out of their account. 
    *  The profile page unique to each user should display data about each favorited location. Location components display the name, address and rating of the location.
 * **State Management**:
-   * The task list component will manage the state of the list of tasks. Each task will be an object with the tasks id, title, description, and completion status
-   * The input form will manage the user input
+   * The location component will manage the state of the rating component, which allows the user to rate a location using an emoji.
+   * 
 
 ### Back-End Components (Node.js with Express):
 * **API Endpoints**: The back-end will expose several API endpoints to handle different actions such as fetching all tasks, adding a new task, updating a task’s status, and deleting a task. These include:
