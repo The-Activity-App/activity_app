@@ -1,4 +1,4 @@
-const knex = require('../knex');
+const knex = require('./knex');
 const { hashPassword, isValidPassword } = require('../../utils/auth-utils');
 
 class User {
@@ -10,6 +10,7 @@ class User {
     this.id = id;
     this.username = username;
     this.#passwordHash = password_hash;
+    this.favorites = [];
   }
 
   static async list() {
