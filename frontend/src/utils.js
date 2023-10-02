@@ -37,8 +37,7 @@ export const fetchHandler = async (url, options = basicFetchOptions) => {
 
 //GEOLOCATION REQUEST
 const successCallback = (position) => {
-  console.log(position.coords.longitude);
-  console.log(position.coords.latitude);  
+  console.log(position.coords.longitude + position.coords.latitude);
 };
 
 const errorCallback = (error) => {
