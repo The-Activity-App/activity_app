@@ -9,6 +9,7 @@ export default function SignUpPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // We could also use a single state variable for the form data:
@@ -20,9 +21,9 @@ export default function SignUpPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorText('');
-    if (!username || !password) return setErrorText('Missing username or password');
+    if (!username || !password || !name) return setErrorText('Missing username, name or password');
 
-    const [user, error] = await createUser({ username, password });
+    const [user, error] = await createUser({ username, password, name });
     if (error) return setErrorText(error.statusText);
 
     setCurrentUser(user);
@@ -33,11 +34,22 @@ export default function SignUpPage() {
     const { name, value } = event.target;
     if (name === 'username') setUsername(value);
     if (name === 'password') setPassword(value);
+    if (name === 'name') setName(value);
   };
 
   return <>
-    <h1>Sign Up</h1>
+    <h1>Sign Usdp</h1>
     <form onSubmit={handleSubmit} onChange={handleChange}>
+    <label htmlFor="name">Name</label>
+      <input
+        autoComplete="off"
+        type="text"
+        id="name"
+        name="name"
+        onChange={handleChange}
+        value={name}
+      />
+      
       <label htmlFor="username">Username</label>
       <input
         autoComplete="off"

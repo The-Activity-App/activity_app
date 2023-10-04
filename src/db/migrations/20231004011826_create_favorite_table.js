@@ -7,7 +7,7 @@ exports.up = (knex) => {
     table.increments("id").primary();
     table.integer("google_id").notNullable();
     table.integer("user_id").notNullable();
-    table.foreign("user_id").references("id").inTable("users");
+    // table.foreign("user_id").references("id").inTable("users");
     // table.foreign("google_id").references("g_id").inTable("places");
   });
 };

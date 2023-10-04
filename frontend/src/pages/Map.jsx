@@ -1,5 +1,6 @@
 
 export default function MapPage() {
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?parameters`
     //fetch function template
     const fetch = async (url) => {
         try {
