@@ -1,6 +1,25 @@
 
 export default function MapPage() {
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?parameters`
+    const URL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?`;
+    const KEY = `AIzaSyBqq373De1wMrBfSwzdeRv23WPtMV4B0T4`;
+    
+    const urlConstructor =  () => {
+        const searchNearby = () => {
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(storePosition);
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+
+            const storePosition = (position) => {
+                const lat = position.coords.latitude;
+                const long = position.coords.longitude;
+                console.log("Current Position:", lat, long);
+            }
+        }  
+        searchNearby();
+        console.log( URL + `${lat},${long}&radius=2000` + KEY);
+    };
     //fetch function template
     const fetch = async (url) => {
         try {
@@ -30,7 +49,7 @@ export default function MapPage() {
     
     
     //url which api requests will be sent to 
-    const URL = "";
+    // const URL = "";
 
     //url constructor including user input
     const URL_CONSTRUCTOR = "";

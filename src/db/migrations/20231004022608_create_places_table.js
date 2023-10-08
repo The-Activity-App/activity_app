@@ -12,6 +12,7 @@ exports.up = (knex) => {
     table.string("hours").notNullable();
     table.string("cost_range").notNullable();
     table.string("ratings").notNullable();
+    table.boolean("is_favorited").notNullable().defaultTo(false);
   });
 };
 
