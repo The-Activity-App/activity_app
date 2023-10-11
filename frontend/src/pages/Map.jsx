@@ -43,8 +43,7 @@ export default function MapPage() {
 
   const handleSearchLocation = async (e) => {
     e.preventDefault();
-    const value = e.target.userSearch.value;
-    setLocation(value);
+    setLocation(e.target.userSearch.value);
   };
 
   return (
