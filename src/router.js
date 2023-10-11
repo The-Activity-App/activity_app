@@ -14,7 +14,8 @@ Router.post('/login', userController.login);
 Router.delete('/logout', userController.logout);
 Router.get('/me', userController.showMe);
 
-Router.post('/map', userController.login);
+Router.get('/api/map', userController.login);
+Router.post('/api/map', userController.login);
 Router.delete('/logout', userController.logout);
 Router.get('/me', userController.showMe);
 

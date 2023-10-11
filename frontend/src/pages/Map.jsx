@@ -1,65 +1,83 @@
+import { useState, useEffect } from 'react';
 
 export default function MapPage() {
-    const URL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?`;
-    const KEY = `AIzaSyBqq373De1wMrBfSwzdeRv23WPtMV4B0T4`;
-    
-    const urlConstructor =  () => {
-        const searchNearby = () => {
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(storePosition);
-            } else {
-                console.log("Geolocation is not supported by this browser.");
-            }
 
-            const storePosition = (position) => {
-                const lat = position.coords.latitude;
-                const long = position.coords.longitude;
-                console.log("Current Position:", lat, long);
-            }
-        }  
-        searchNearby();
-        console.log( URL + `${lat},${long}&radius=2000` + KEY);
+//RAPID API 
+const url = "https://local-business-data.p.rapidapi.com/search?";
+
+const superFunction = async (str) => {
+    //this function strips spaces from the user input
+    const stripSpaces = (str) => {
+      const space = "%20";
+      const regex = /\s/g;
+      if (!str) {
+        return "nothing to see here";
+      } else return str.replace(regex, space);
     };
-    //fetch function template
-    const fetch = async (url) => {
-        try {
-            const response = await fetch(url);
-            const data = await response.json;
-            return data;
-        } catch(error) {
-            console.log(error);
-            return null;
-        }
+    stripSpaces();
+  
+    //this function retrieves the users current location
+    function getCurrLo(position) {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      const coords = lat + ", " + long;
+      console.log("superFunction lo results: ", coords);
+    }
+  
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCurrLo);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  
+    //now form URL des!!!
+    console.log(url);
+    console.log(str);
+  };
+
+    // const [userInput, setUserInput] = useState('');
+    // useEffect(() =>{});
+  const getApiUrlWithQuery = (query = '', location = '') => {
+    const stripSpaces = (query) => {
+      const space = "%20";
+      const regex = /\s/g;
+      if (!query) {
+        return "nothing to see here";
+      } else return query.replace(regex, space);
     };
+    stripSpaces(query);
 
-    //current location helper function
-    const searchNearby = () => {
-        const successCallbackLong = (position) => {
-            console.log(position)
-            console.log(position.coords.longitude + "," + position.coords.latitude );
-        };
-        
-        const errorCallback = (error) => {
-           console.log(error);
-        };
-          
-        navigator.geolocation.getCurrentPosition(successCallbackLong, errorCallback);
-    }    
-    
-    
-    
-    //url which api requests will be sent to 
-    // const URL = "";
+    function getCurrLo(position) {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      const location = lat + ", " + long;
+      console.log("superFunction lo results: ", location);
+    }
+  
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCurrLo);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+    // console.log(navigator.geolocation.getCurrentPosition())
+    // console.log("new attempt", lat, long)
+    // return url + `query=${query}` + lat + long ;
+  };
+getApiUrlWithQuery("hello mrs.davis, how are you?");
 
-    //url constructor including user input
-    const URL_CONSTRUCTOR = "";
+//url should be a state value that changes
+//have a default place value for the state 
 
-    //fetch helper function
-    const fetchData = async (url) => {};
+
+
     return <>
       <div>
-        <button onClick={ handleClick }>Fetch</button>
-        <p>Results: </p>
+        <input type='text' placeholder='Search a Place'></input>
+        <button>Search</button>
+        <div>
+          <h3>Results: </h3>
+
+        </div>
       </div>
     </>;
   }
