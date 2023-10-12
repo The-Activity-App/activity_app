@@ -38,7 +38,7 @@ export default function SignUpPage() {
   };
 
   return <>
-    <h1>Sign Usdp</h1>
+    <h1>Sign Up</h1>
     <form onSubmit={handleSubmit} onChange={handleChange}>
     <label htmlFor="name">Name</label>
       <input

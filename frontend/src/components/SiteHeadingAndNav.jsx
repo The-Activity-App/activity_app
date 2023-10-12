@@ -1,12 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import CurrentUserContext from "../contexts/current-user-context";
+import img from "../assets/out-app-logo.png";
 
 export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
 
   return <header>
-    <a id='logo' href='/'>React/Express Auth</a>
+    <a id='logo' href='/'>
+      <img alt='logo' src='assets/out-app-logo.png'/>
+    </a>
     <nav>
       <ul>
         {/* <li><NavLink to='/'>Home</NavLink></li> */}

@@ -4,6 +4,7 @@ import CurrentUserContext from "../contexts/current-user-context";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
+import { Card, CardContent, CardActions, CardActionArea, Typography } from '@mui/material';
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -38,7 +39,51 @@ export default function UserPage() {
   const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
 
   return <>
-    <h1>{profileUsername}</h1>
+  <div id="greeting-div">
+    <h1>Hey {profileUsername}!</h1>
+    <h3>Here are your favorites</h3>
+  </div>
+  <div id="side-menu">
+
+  </div>
+  <div id="favorite-holder">
+  <Card variant="outlined">
+    <CardActionArea>
+      <CardContent>
+        <Typography>Name</Typography>
+        <Typography>City, State</Typography>
+        <Typography>Ratings</Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card>
+  <Card variant="outlined">
+    <CardActionArea>
+      <CardContent>
+        <Typography>Name</Typography>
+        <Typography>City, State</Typography>
+        <Typography>Ratings</Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card>
+  <Card variant="outlined">
+    <CardActionArea>
+      <CardContent>
+        <Typography>Name</Typography>
+        <Typography>City, State</Typography>
+        <Typography>Ratings</Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card>
+  <Card variant="outlined">
+    <CardActionArea>
+      <CardContent>
+        <Typography>Name</Typography>
+        <Typography>City, State</Typography>
+        <Typography>Ratings</Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card>
+  </div>
     { !!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button> }
     <p>If the user had any data, here it woulferrfrffrd be</p>
     <p>This text will represent a fake box</p>
