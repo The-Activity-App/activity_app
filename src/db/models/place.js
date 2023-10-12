@@ -72,7 +72,7 @@ class Place {
     }
   }
 
-  static async listFavorite(favorite_id) {
+  static async listFav(favorite_id) {
     try {
       const result = await knex.raw(
         `
