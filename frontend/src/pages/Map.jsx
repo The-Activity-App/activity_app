@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+// import knex from "../../../src/db/knex";
+
 export default function MapPage() {
   //   "https://local-business-data.p.rapidapi.com/search?query=Hotels%20in%20San%20Francisco%2C%20USA&limit=20&lat=37.359428&lng=-121.925337&zoom=13&language=en&region=us";
   const [position, setPosition] = useState({ lat: 0, lng: 0 });
@@ -21,6 +23,8 @@ export default function MapPage() {
         const result = await response.json();
         console.log(result);
         console.log(result.data);
+        // const storingData = await knex.raw(`
+        // `,[])
       } catch (error) {
         console.error(error);
       }
@@ -39,38 +43,20 @@ export default function MapPage() {
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-<<<<<<< HEAD
-    // console.log(navigator.geolocation.getCurrentPosition())
-    // console.log("new attempt", lat, long)
-    // return url + `query=${query}` + lat + long ;
-  };
-getApiUrlWithQuery("hello mrs.davis, how are you?");
-
-//url should be a state value that changes
-//have a default place value for the state 
-
-  const [userInput, setUserInput] = useState('');
-=======
   }, [navigator.geolocation]);
 
   const handleSearchLocation = async (e) => {
     e.preventDefault();
     setLocation(e.target.userSearch.value);
   };
->>>>>>> b337e3666f3ea571f72f9e29589d884977fc3fc4
 
   return (
     <>
       <div>
-<<<<<<< HEAD
-        <input type='text' placeholder='Search a Place'>{ userInput }</input>
-        <button>Search</button>
-=======
         <form onSubmit={handleSearchLocation}>
           <input type="text" name="userSearch" />
           <button type="submit">Search</button>
         </form>
->>>>>>> b337e3666f3ea571f72f9e29589d884977fc3fc4
         <div>
           <h3>Results: </h3>
         </div>
