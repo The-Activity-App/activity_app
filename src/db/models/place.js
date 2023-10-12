@@ -2,33 +2,6 @@ const knex = require("../knex");
 
 //Define CRUD interface
 class Place {
-  #isFavorited;
-
-  constructor({
-    //
-    id,
-    biz_id,
-    name,
-    address,
-    type,
-    working_hours,
-    number,
-    price_level,
-    rating,
-    is_favorited,
-  }) {
-    this.id = id;
-    this.biz_id = biz_id;
-    this.name = name;
-    this.number = number;
-    this.address = address;
-    this.type = type;
-    this.working_hours = working_hours;
-    this.price_level = price_level;
-    this.rating = rating;
-    this.#isFavorited = is_favorited;
-  }
-
   //add a place to the favorites table
   static async addFavorite(
     biz_id,
@@ -78,6 +51,9 @@ class Place {
   //list a place
   static async listPlace() {
     try {
+      const result = await knew.raw(`
+      
+      `);
     } catch (err) {
       console.error(err);
       return null;
@@ -85,10 +61,10 @@ class Place {
   }
 
   //list all favorites
-  static async listAllFavorites() {
+  static async listAllFavorites(user_id) {
     try {
       const results = await knex.raw(
-        `SELECT DISTINCT id FROM favorites WHERE user_id=?`,
+        `SELECT * FROM favorites WHERE user_id=?`,
         [user_id]
       );
       return results.rows;
@@ -99,8 +75,11 @@ class Place {
   }
 
   //remove/delete a favorite
-  static async removeFavorite() {
+  static async removeFavorite(favorite_id) {
     try {
+      const result = await knex.raw(`
+      DELETE FROM favorites where id=?
+      `)
     } catch (err) {
       console.error(err);
       return null;
@@ -109,7 +88,7 @@ class Place {
 }
 
 const testQueries = async () => {
-  const favorite = await addFavorite();
+  const favorite = await Place.addFavorite();
   console.log(favorite);
 };
 testQueries();

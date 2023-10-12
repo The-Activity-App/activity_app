@@ -1,8 +1,9 @@
 const getGeoLocBtn = document.getElementById("geolo-fetch-btn");
 const searchNearbyBtn = document.getElementById("nearby-search-btn");
+
 const url = "https://local-business-data.p.rapidapi.com/search?query=";
 
-const url2 =
+const exampleUrl =
   "https://local-business-data.p.rapidapi.com/search?query=Hotels%20in%20San%20Francisco%2C%20USA&limit=20&lat=37.359428&lng=-121.925337&zoom=13&language=en&region=us";
 
 getGeoLocBtn.addEventListener("click", function () {

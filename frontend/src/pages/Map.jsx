@@ -68,11 +68,11 @@ getApiUrlWithQuery("hello mrs.davis, how are you?");
 //url should be a state value that changes
 //have a default place value for the state 
 
-
+  const [userInput, setUserInput] = useState('');
 
     return <>
       <div>
-        <input type='text' placeholder='Search a Place'></input>
+        <input type='text' placeholder='Search a Place'>{ userInput }</input>
         <button>Search</button>
         <div>
           <h3>Results: </h3>
