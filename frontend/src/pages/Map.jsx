@@ -1,64 +1,45 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect } from "react";
 export default function MapPage() {
+  //   "https://local-business-data.p.rapidapi.com/search?query=Hotels%20in%20San%20Francisco%2C%20USA&limit=20&lat=37.359428&lng=-121.925337&zoom=13&language=en&region=us";
+  const [position, setPosition] = useState({ lat: 0, lng: 0 });
+  const [location, setLocation] = useState("things to do");
 
-//RAPID API 
-const url = "https://local-business-data.p.rapidapi.com/search?";
+  useEffect(() => {
+    async function fetchData() {
+      const url = `https://local-business-data.p.rapidapi.com/search?query=${location}&limit=20&lat=${position.lat}&lng=${position.lng}&zoom=13&language=en&region=us";`;
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "20a7962978msh45ffdf645ba0ac3p147a18jsn4fe68244c04b",
+          "X-RapidAPI-Host": "local-business-data.p.rapidapi.com",
+        },
+      };
 
-const superFunction = async (str) => {
-    //this function strips spaces from the user input
-    const stripSpaces = (str) => {
-      const space = "%20";
-      const regex = /\s/g;
-      if (!str) {
-        return "nothing to see here";
-      } else return str.replace(regex, space);
-    };
-    stripSpaces();
-  
-    //this function retrieves the users current location
-    function getCurrLo(position) {
-      const lat = position.coords.latitude;
-      const long = position.coords.longitude;
-      const coords = lat + ", " + long;
-      console.log("superFunction lo results: ", coords);
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        console.log(result);
+        console.log(result.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
-  
+    fetchData();
+  }, [position, location]);
+
+  useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCurrLo);
+      navigator.geolocation.getCurrentPosition((position) => {
+        setPosition({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      });
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  
-    //now form URL des!!!
-    console.log(url);
-    console.log(str);
-  };
-
-    // const [userInput, setUserInput] = useState('');
-    // useEffect(() =>{});
-  const getApiUrlWithQuery = (query = '', location = '') => {
-    const stripSpaces = (query) => {
-      const space = "%20";
-      const regex = /\s/g;
-      if (!query) {
-        return "nothing to see here";
-      } else return query.replace(regex, space);
-    };
-    stripSpaces(query);
-
-    function getCurrLo(position) {
-      const lat = position.coords.latitude;
-      const long = position.coords.longitude;
-      const location = lat + ", " + long;
-      console.log("superFunction lo results: ", location);
-    }
-  
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCurrLo);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
+<<<<<<< HEAD
     // console.log(navigator.geolocation.getCurrentPosition())
     // console.log("new attempt", lat, long)
     // return url + `query=${query}` + lat + long ;
@@ -69,15 +50,31 @@ getApiUrlWithQuery("hello mrs.davis, how are you?");
 //have a default place value for the state 
 
   const [userInput, setUserInput] = useState('');
+=======
+  }, [navigator.geolocation]);
 
-    return <>
+  const handleSearchLocation = async (e) => {
+    e.preventDefault();
+    setLocation(e.target.userSearch.value);
+  };
+>>>>>>> b337e3666f3ea571f72f9e29589d884977fc3fc4
+
+  return (
+    <>
       <div>
+<<<<<<< HEAD
         <input type='text' placeholder='Search a Place'>{ userInput }</input>
         <button>Search</button>
+=======
+        <form onSubmit={handleSearchLocation}>
+          <input type="text" name="userSearch" />
+          <button type="submit">Search</button>
+        </form>
+>>>>>>> b337e3666f3ea571f72f9e29589d884977fc3fc4
         <div>
           <h3>Results: </h3>
-
         </div>
       </div>
-    </>;
-  }
+    </>
+  );
+}
