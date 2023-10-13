@@ -1,9 +1,7 @@
 import { useRef,useState, useEffect } from "react";
 import maplibregl from 'maplibre-gl';
-import Map from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../index.css';
-// import knex from "../../../src/db/knex";
 
 export default function MapPage() {
   const [position, setPosition] = useState({ lat: 0, lng: 0 });
@@ -22,7 +20,6 @@ export default function MapPage() {
           "X-RapidAPI-Host": "local-business-data.p.rapidapi.com",
         },
       };
-
       try {
         const response = await fetch(url, options);
         const result = await response.json();
@@ -39,7 +36,6 @@ export default function MapPage() {
     }
     fetchData();
   }, [position, location]);
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -52,7 +48,6 @@ export default function MapPage() {
       console.log("Geolocation is not supported by this browser.");
     }
   }, [navigator.geolocation]);
-
   const handleSearchLocation = async (e) => {
     e.preventDefault();
     setLocation(e.target.userSearch.value);
@@ -60,36 +55,34 @@ export default function MapPage() {
   //Map Setup
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng] = useState(139.753);
-    const [lat] = useState(35.6844);
+    const [lng] = useState(-73.9016704);
+    const [lat] = useState(40.6552576);
     const [zoom] = useState(10);
-    const tomTomKey = useState('KuVFsbh7VE7HN2eMHgGEc0nKZFtqbSxL');
-    const [API_KEY] = useState('IzLYXoPh4GSSWEsCG4IL');
+    // const tomTomKey = useState('KuVFsbh7VE7HN2eMHgGEc0nKZFtqbSxL');
+    // const [API_KEY] = useState('IzLYXoPh4GSSWEsCG4IL');
 
 
     useEffect(() => {
       if (map.current) return; // stops map from intializing more than once
-    
+
       map.current = new maplibregl.Map({
         container: mapContainer.current,
         style: "https://api.tomtom.com/style/2/custom/style/dG9tdG9tQEBASmtqcVQwMG94V3dpdG9XYjtlZmUzOTUzOC05NTkzLTRhNjktYjVkNy1hNmNhOWFhN2NhZmQ=.json?key=KuVFsbh7VE7HN2eMHgGEc0nKZFtqbSxL",
         center: [lng, lat],
         zoom: zoom
       });
-    
-    }, [tomTomKey, lng, lat, zoom]);
 
+    }, [ lng, lat, zoom]);
 
   return (
     <>
-      <div>
+          <div>
         <form onSubmit={handleSearchLocation}>
           <input type="text" name="userSearch" />
           <button type="submit">Search</button>
         </form>
         <div>
           <h3>Results: </h3>
-          <p>{data.name}</p>
         </div>
       </div>
       <div className="map-wrap">
