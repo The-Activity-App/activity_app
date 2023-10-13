@@ -6,9 +6,9 @@ import img from "../assets/out-app-logo.png";
 export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
 
-  return <header>
+  return <header >
     <a id='logo' href='/'>
-      <img alt='logo' src='assets/out-app-logo.png'/>
+      Out App
     </a>
     <nav>
       <ul>

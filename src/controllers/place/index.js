@@ -5,9 +5,6 @@ const listFavorite = require("./list-favorite");
 const listAllFavorites = require("./list-all-favorites");
 const removeFavorite = require("./remove-favorite");
 
-const sendUpdate = require("send-update");
-const requestUpdate = require("request-update");
-
 module.exports = {
   addPlace,
   listPlace,
@@ -15,7 +12,4 @@ module.exports = {
   listFavorite,
   listAllFavorites,
   removeFavorite,
-  
-  sendUpdate,
-  requestUpdate,
 };

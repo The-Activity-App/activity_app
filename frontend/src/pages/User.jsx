@@ -5,7 +5,7 @@ import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
 import { Card, CardContent, CardActions, CardActionArea, Typography } from '@mui/material';
-
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 export default function UserPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -53,6 +53,8 @@ export default function UserPage() {
         <Typography>Name</Typography>
         <Typography>City, State</Typography>
         <Typography>Ratings</Typography>
+        <FavoriteBorderOutlinedIcon fontSize="medium"/>
+
       </CardContent>
     </CardActionArea>
   </Card>
@@ -62,6 +64,8 @@ export default function UserPage() {
         <Typography>Name</Typography>
         <Typography>City, State</Typography>
         <Typography>Ratings</Typography>
+        <FavoriteBorderOutlinedIcon fontSize="medium"/>
+
       </CardContent>
     </CardActionArea>
   </Card>
@@ -71,6 +75,8 @@ export default function UserPage() {
         <Typography>Name</Typography>
         <Typography>City, State</Typography>
         <Typography>Ratings</Typography>
+        <FavoriteBorderOutlinedIcon fontSize="medium"/>
+
       </CardContent>
     </CardActionArea>
   </Card>
@@ -80,13 +86,13 @@ export default function UserPage() {
         <Typography>Name</Typography>
         <Typography>City, State</Typography>
         <Typography>Ratings</Typography>
+        <FavoriteBorderOutlinedIcon fontSize="medium"/>
       </CardContent>
     </CardActionArea>
   </Card>
   </div>
     { !!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button> }
-    <p>If the user had any data, here it woulferrfrffrd be</p>
-    <p>This text will represent a fake box</p>
+
     {
       !!isCurrentUserProfile
         && <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser}/>
