@@ -64,13 +64,21 @@ export default function SearchPage() {
         <div>
           <h3>Results: </h3>
           <div>
-            {
-              bizData && <div >
-                <p>{bizData[0]}</p>
-                <Place />
-                <PlaceHolder />
-              </div>
-            }
+            <ul>
+              {Object.keys(this.props.data).map((propKey) => {
+                <li key={propKey}>
+                  {this.props.data[propKey]}
+
+                  <ul>            
+                    {Object.keys(this.props.data[propKey]).map((childPropKey) => {
+                      <li key={childPropKey}>
+                        {this.props.data[propKey][childPropKey]}
+                      </li>
+                    })}
+                  </ul>
+                </li>
+              })}
+            </ul>
           </div>
         </div>
       </div>

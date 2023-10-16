@@ -35,4 +35,3 @@ export const fetchHandler = async (url, options = basicFetchOptions) => {
     return [null, error];
   }
 };
-
