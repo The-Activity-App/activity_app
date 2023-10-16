@@ -4,8 +4,19 @@ import CurrentUserContext from "../contexts/current-user-context";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
-import { Card, CardContent, CardActions, CardActionArea, Typography } from '@mui/material';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { Card, CardContent, Button, CardActionArea, Typography } from '@mui/material';
+import { grey, deepPurple } from '@mui/material/colors';
+import Place from "../components/PlaceComp";
+
+// const theme = createTheme({
+//   palette: {
+//     primary: grey,
+//     secondary: deepPurple[800],
+//   },
+// });
+const primary = grey[900];
+const secondary = deepPurple['700'];
+
 export default function UserPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -47,49 +58,7 @@ export default function UserPage() {
 
   </div>
   <div id="favorite-holder">
-  <Card variant="outlined">
-    <CardActionArea>
-      <CardContent>
-        <Typography>Name</Typography>
-        <Typography>City, State</Typography>
-        <Typography>Ratings</Typography>
-        <FavoriteBorderOutlinedIcon fontSize="medium"/>
-
-      </CardContent>
-    </CardActionArea>
-  </Card>
-  <Card variant="outlined">
-    <CardActionArea>
-      <CardContent>
-        <Typography>Name</Typography>
-        <Typography>City, State</Typography>
-        <Typography>Ratings</Typography>
-        <FavoriteBorderOutlinedIcon fontSize="medium"/>
-
-      </CardContent>
-    </CardActionArea>
-  </Card>
-  <Card variant="outlined">
-    <CardActionArea>
-      <CardContent>
-        <Typography>Name</Typography>
-        <Typography>City, State</Typography>
-        <Typography>Ratings</Typography>
-        <FavoriteBorderOutlinedIcon fontSize="medium"/>
-
-      </CardContent>
-    </CardActionArea>
-  </Card>
-  <Card variant="outlined">
-    <CardActionArea>
-      <CardContent>
-        <Typography>Name</Typography>
-        <Typography>City, State</Typography>
-        <Typography>Ratings</Typography>
-        <FavoriteBorderOutlinedIcon fontSize="medium"/>
-      </CardContent>
-    </CardActionArea>
-  </Card>
+  <Place />
   </div>
     { !!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button> }
 

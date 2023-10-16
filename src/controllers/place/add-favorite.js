@@ -1,4 +1,4 @@
-const addPlace = async (req, res) => {
+const addFavorite = async (req, res) => {
   const {
     session, // this req.session property is put here by the handleCookieSessions middleware
     db: { Place }, // this req.db.User property is put here by the addModelsToRequest middleware
@@ -17,7 +17,7 @@ const addPlace = async (req, res) => {
     }, // this req.body property is put here by the client
   } = req;
 
-  const newPlace = await Place.addPlace(
+  const newFav = await Place.addFavorite(
     biz_id,
     name,
     address,
@@ -32,7 +32,7 @@ const addPlace = async (req, res) => {
   );
   session.userId = user.id;
 
-  res.send(newPlace);
+  res.send(newFav);
 };
 
-module.exports = addPlace;
+module.exports = addFavorite;

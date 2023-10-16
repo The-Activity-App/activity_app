@@ -88,6 +88,8 @@ class Place {
     }
   }
 
+
+
   //list all favorites
   static async listAllFavorites(user_id) {
     try {
@@ -99,6 +101,18 @@ class Place {
     } catch (error) {
       console.error(error);
       return null;
+    }
+  }
+
+  //add favorite
+  static async addFavorite(place_id, user_id){
+    try{
+      const result = await knex.raw(`
+        INSERT INTO favorites (place_id, user_id) VALUES (?, ?);
+      `[place_id, user_id])
+      return result.rows;
+    } catch(err){
+      return console.error(err)
     }
   }
 

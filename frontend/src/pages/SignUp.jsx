@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
 import { createUser } from "../adapters/user-adapter";
+import Input from '@mui/material/Input';
 
 // Controlling the signup form is a good idea because we want to adde (eventually)
 // more validation and provide real time feedback to the user about usernames and passwords
@@ -21,7 +22,9 @@ export default function SignUpPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorText('');
-    if (!username || !password || !name) return setErrorText('Missing username, name or password');
+    if (!username || !password || !name) return <>
+              <TextField error id="outlined-error-helper-text" label='Incorrect entry.' defaultValue={''} placeholder='Name'/>
+    </>;
 
     const [user, error] = await createUser({ username, password, name });
     if (error) return setErrorText(error.statusText);
@@ -49,7 +52,6 @@ export default function SignUpPage() {
         onChange={handleChange}
         value={name}
       />
-      
       <label htmlFor="username">Username</label>
       <input
         autoComplete="off"
@@ -69,6 +71,11 @@ export default function SignUpPage() {
         onChange={handleChange}
         value={password}
       />
+{/* <Input required  id="outlined-required" label='Required' placeholder="Name" color="primary"
+autoComplete="off" onChange={ handleChange } value={ name }
+/>
+<Input required id="outline-required" label='Required' placeholder="Username" autoComplete="off" onChange={ handleChange } value={ username } />
+<Input required id="outline-required" label='Required' placeholder="Password" autoComplete="off" onChange={ handleChange } value={ password } /> */}
 
       {/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
         <label htmlFor="password-confirm">Password Confirm</label>

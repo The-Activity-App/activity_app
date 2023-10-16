@@ -36,17 +36,3 @@ export const fetchHandler = async (url, options = basicFetchOptions) => {
   }
 };
 
-//GEOLOCATION REQUEST
-const successCallback = (position) => {
-  console.log(
-    "this is on the start up",
-    position.coords.longitude,
-    position.coords.latitude
-  );
-};
-
-const errorCallback = (error) => {
-  console.log(error);
-};
-
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);

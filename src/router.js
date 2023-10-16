@@ -15,11 +15,10 @@ Router.post("/login", userController.login);
 Router.delete("/logout", userController.logout);
 Router.get("/me", userController.showMe);
 
-Router.get("/api/map", placeController.addPlace);
-Router.get("/api/map", placeController.listPlace);
-Router.get("/api/map", placeController.listFavorite);
-Router.get("/api/map", placeController.listAllFavorites);
-Router.delete("/api/map", placeController.removeFavorite);
+Router.get("/api/search", placeController.addFavorite);
+Router.get("/api/search", placeController.listFavorite);
+Router.get("/api/search", placeController.listAllFavorites);
+Router.delete("/api/search", placeController.removeFavorite);
 
 // These actions require authentication (only valid logged in users can do these things)
 // The checkAuthentication middleware will only run for these specified routes.

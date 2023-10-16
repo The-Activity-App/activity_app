@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SignUpPage from './pages/SignUp';
@@ -9,10 +9,13 @@ import UserContext from './contexts/current-user-context';
 import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
-import MapPage from './pages/Map';
+import SearchPage from './pages/Search';
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
+  // const incrementFavorites = () => setFavorites(favorites+1);
+  // const [ favorites, setFavorites ] = useState(0);
+
   useEffect(() => {
     checkForLoggedInUser().then(setCurrentUser);
   }, [setCurrentUser]);
@@ -26,7 +29,7 @@ export default function App() {
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/users' element={<UsersPage />} />
         <Route path='/users/:id' element={<UserPage />} />
-        <Route path='/map' element={<MapPage />} />
+        <Route path='/search' element={<SearchPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </main>

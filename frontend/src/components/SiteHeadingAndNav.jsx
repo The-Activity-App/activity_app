@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import CurrentUserContext from "../contexts/current-user-context";
-import img from "../assets/out-app-logo.png";
 
 export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -13,7 +12,7 @@ export default function SiteHeadingAndNav() {
     <nav>
       <ul>
         {/* <li><NavLink to='/'>Home</NavLink></li> */}
-        <li><NavLink to='/map'>Map</NavLink></li>
+        <li><NavLink to='/map'>Search</NavLink></li>
         <li><NavLink to='/users' end={true}>Users</NavLink></li>
         {
           currentUser
