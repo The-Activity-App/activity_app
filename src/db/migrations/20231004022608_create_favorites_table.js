@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = (knex) => {
-  return knex.schema.createTable("places", (table) => {
+  return knex.schema.createTable("favorites", (table) => {
     table.increments("id").primary();
     table.string("biz_id").notNullable();
     table.string("name").notNullable();
@@ -16,7 +16,6 @@ exports.up = (knex) => {
     table.integer("user_id").notNullable();
     table.foreign("user_id").references("id").inTable("users");
     table.string("emoji_rating").notNullable();
-    table.boolean("is_favorited").notNullable().defaultTo(false);
   });
 };
 
@@ -25,5 +24,5 @@ exports.up = (knex) => {
  * @returns { Promise<void> }
  */
 exports.down = (knex) => {
-  return knex.schema.dropTable("places");
+  return knex.schema.dropTable("favorites");
 };

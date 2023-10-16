@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Place from "../components/PlaceComp";
-import PlaceHolder from "../components/PlaceHolder";
+// import Place from "../components/PlaceComp";
+// import PlaceHolder from "../components/PlaceHolder";
 import '../index.css';
 
 
@@ -8,7 +8,7 @@ import '../index.css';
 export default function SearchPage() {
   const [position, setPosition] = useState({ lat: 0, lng: 0 });
   const [userInput, setSearch] = useState("");
-  const [bizData, showData] = useState({});
+  const [bizData, showData] = useState({businessId:'', name:'', address:'', rating:''});
   const url = `https://local-business-data.p.rapidapi.com/search?query=${userInput}&limit=5&lat=${position.lat}&lng=${position.lng}&zoom=13&language=en&region=us";`;
   const options = {
     method: "GET",
@@ -63,7 +63,7 @@ export default function SearchPage() {
         </form>
         <div>
           <h3>Results: </h3>
-          <div>
+          {/* <div>
             <ul>
               {Object.keys(this.props.data).map((propKey) => {
                 <li key={propKey}>
@@ -79,29 +79,27 @@ export default function SearchPage() {
                 </li>
               })}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
   );
 }
-    // const dataObj = {
-    //   businessId: result.data[i].business_id,
-    //   address: result.data[i].address,
-    //   name: result.data[i].name,
-    //   rating: result.data[i].rating,
-    //   website: result.data[i].website
-    // }
-    // console.log(dataObj)
 
 
-    // async function loopThruResults(){
-    //   let dataArr = [];
-      
-    //   for(let i = 0; i <= result.data.length -1; i++){
+// async function loopThruResults(){
+  //   let dataArr = [];
+  //   for(let i = 0; i <= result.data.length -1; i++){
+      // const dataObj = {
+      //   businessId: result.data[i].business_id,
+      //   address: result.data[i].address,
+      //   name: result.data[i].name,
+      //   rating: result.data[i].rating,
+      //   website: result.data[i].website
+      // }
+      // console.log(dataObj)
     //     
     //     dataArr.push(dataObj)
-        
     //   }
     //   console.log("its a freshly generated data array",dataArr);
     //   return dataArr;
