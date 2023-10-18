@@ -1,26 +1,15 @@
 /* eslint-disable func-style */
 import { useState, useEffect } from "react";
-<<<<<<< HEAD
-// import Place from "../components/PlaceComp";
-// import PlaceHolder from "../components/PlaceHolder";
-import '../index.css';
-
-
-
-export default function SearchPage() {
-  const [position, setPosition] = useState({ lat: 0, lng: 0 });
-  const [userInput, setSearch] = useState("");
-  const [bizData, showData] = useState({businessId:'', name:'', address:'', rating:''});
-=======
 import Place from "../components/PlaceComp";
-import PlaceHolder from "../components/PlaceHolder";
+import { CardMedia, Button } from '@mui/material';
+
 import "../index.css";
+import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 
 export default function SearchPage() {
   const [position, setPosition] = useState({ lat: 0, lng: 0 });
   const [userInput, setSearch] = useState("famous things to do");
   const [data, setData] = useState([]);
->>>>>>> 3db3cacf19826a06855a322382290321d237ae70
   const url = `https://local-business-data.p.rapidapi.com/search?query=${userInput}&limit=5&lat=${position.lat}&lng=${position.lng}&zoom=13&language=en&region=us";`;
   const options = {
     method: "GET",
@@ -31,12 +20,21 @@ export default function SearchPage() {
   };
 
   useEffect(() => {
+    
+  const handlePhoto = () =>{
+    if(photo){
+      return <img src={photo}/>
+    }
+  };
     // fetch helper function
     async function fetchData() {
       try {
         const response = await fetch(url, options);
         const result = await response.json();
         setData(result.data);
+        setPhoto(result.data[0].photos_sample[0].photo_url);
+        // console.log(result.data)
+        // console.log('this is a business photo',result.data[0].photos_sample[0].photo_url)
         return result;
       } catch (error) {
         console.error(error);
@@ -66,33 +64,63 @@ export default function SearchPage() {
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSearchLocation}>
-          <input type="text" name="userSearch" id="input" />
-          <button type="submit">Search</button>
-        </form>
-        <div>
-          <h3>Results: </h3>
-          {/* <div>
+        <div style={{
+          textAlign:'center',
+        }}>
+          <form onSubmit={handleSearchLocation} style={{
+            backgroundColor:'#efefef',
+            borderRadius:10,
+            width:400,
+            display:'flex',
+            justifyContent:'space-around',
+            marginTop:10,
+            alignContent:'center'
+          }}>
+            <LocationSearchingIcon fontSize="medium" style={{
+              marginTop:10,
+              marginRight:4
+            }}/>
+            <input type="text" name="userSearch" id="input" placeholder="Where to?" style={{
+              width:350,
+              height:37,
+              fontSize:17,
+              borderColor:'#351c75',
+              borderRadius:4,
+              marginRight:4
+
+            }}/>
+            <Button variant="outlined" type="submit" style={{
+              height:40,
+              borderColor:'#351c75',
+              color:'#351c75',
+              marginTop:1
+
+            }} >Search</Button>
+          </form>
+          <h1>Results: </h1>
+          <div style={{
+            display:'flex',
+            justifyContent:'center'
+          }}>
+
             <ul>
               {data.map((result) => (
                 <Place
                   key={result.business_id}
                   name={result.name}
                   city={result.city}
-                  State={result.state}
+                  state={result.state}
                   ratings={result.rating}
+                  type={result.type}
+                  photo={result.photos_sample[0].photo_url}
                 />
               ))}
             </ul>
-          </div> */}
+          </div>
         </div>
-      </div>
     </>
   );
 }
-<<<<<<< HEAD
-=======
 // const dataObj = {
 //   businessId: result.data[i].business_id,
 //   address: result.data[i].address,
@@ -104,35 +132,13 @@ export default function SearchPage() {
 
 // async function loopThruResults(){
 //   let dataArr = [];
->>>>>>> 3db3cacf19826a06855a322382290321d237ae70
 
 //   for(let i = 0; i <= result.data.length -1; i++){
 //
 //     dataArr.push(dataObj)
 
-<<<<<<< HEAD
-// async function loopThruResults(){
-  //   let dataArr = [];
-  //   for(let i = 0; i <= result.data.length -1; i++){
-      // const dataObj = {
-      //   businessId: result.data[i].business_id,
-      //   address: result.data[i].address,
-      //   name: result.data[i].name,
-      //   rating: result.data[i].rating,
-      //   website: result.data[i].website
-      // }
-      // console.log(dataObj)
-    //     
-    //     dataArr.push(dataObj)
-    //   }
-    //   console.log("its a freshly generated data array",dataArr);
-    //   return dataArr;
-    // };
-    // loopThruResults();
-=======
 //   }
 //   console.log("its a freshly generated data array",dataArr);
 //   return dataArr;
 // };
 // loopThruResults();
->>>>>>> 3db3cacf19826a06855a322382290321d237ae70

@@ -7,7 +7,6 @@ exports.up = (knex) =>
     table.increments("id");
     table.string("username").notNullable().unique();
     table.string("password_hash").notNullable();
-    // table.string("name").notNullable();
     table.timestamps(true, true);
   });
 

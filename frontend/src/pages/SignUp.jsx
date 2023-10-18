@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
 import { createUser } from "../adapters/user-adapter";
-import Input from '@mui/material/Input';
 
 // Controlling the signup form is a good idea because we want to adde (eventually)
 // more validation and provide real time feedback to the user about usernames and passwords
@@ -10,7 +9,6 @@ export default function SignUpPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
-  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // We could also use a single state variable for the form data:
@@ -22,11 +20,9 @@ export default function SignUpPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorText('');
-    if (!username || !password || !name) return <>
-              <TextField error id="outlined-error-helper-text" label='Incorrect entry.' defaultValue={''} placeholder='Name'/>
-    </>;
+    if (!username || !password) return setErrorText('Missing username, name or password');
 
-    const [user, error] = await createUser({ username, password, name });
+    const [user, error] = await createUser({ username, password });
     if (error) return setErrorText(error.statusText);
 
     setCurrentUser(user);
@@ -37,13 +33,13 @@ export default function SignUpPage() {
     const { name, value } = event.target;
     if (name === 'username') setUsername(value);
     if (name === 'password') setPassword(value);
-    if (name === 'name') setName(value);
+    // if (name === 'name') setName(value);
   };
 
   return <>
     <h1>Sign Up</h1>
     <form onSubmit={handleSubmit} onChange={handleChange}>
-    <label htmlFor="name">Name</label>
+    {/* <label htmlFor="name">Name</label>
       <input
         autoComplete="off"
         type="text"
@@ -51,7 +47,7 @@ export default function SignUpPage() {
         name="name"
         onChange={handleChange}
         value={name}
-      />
+      /> */}
       <label htmlFor="username">Username</label>
       <input
         autoComplete="off"

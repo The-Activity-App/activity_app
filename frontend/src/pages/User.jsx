@@ -50,15 +50,22 @@ export default function UserPage() {
   const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
 
   return <>
-  <div id="greeting-div">
-    <h1>Hey {profileUsername}!</h1>
-    <h3>Here are your favorites</h3>
-  </div>
-  <div id="side-menu">
+  <div className="wrapper" style={{
+    textAlign:'center',
+  }}>
 
-  </div>
-  <div id="favorite-holder">
-  <Place />
+
+    <div className="greeting-div">
+      <h1>Hey {profileUsername}!</h1>
+      <h2>Here are your favorites</h2>
+    </div>
+    <div className="favorite-holder" style={{
+      backgroundColor:'#d9d9d9',
+      display:'flex',
+      justifyContent:'center'
+    }}>
+      <Place />
+    </div>
   </div>
     { !!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button> }
 

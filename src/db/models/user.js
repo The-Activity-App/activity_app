@@ -1,6 +1,6 @@
 const knex = require("../knex");
 const { hashPassword, isValidPassword } = require("../../utils/auth-utils");
-  
+
 class User {
   #passwordHash = null; // a private property
 

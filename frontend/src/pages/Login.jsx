@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { logUserIn } from "../adapters/auth-adapter";
 import CurrentUserContext from "../contexts/current-user-context";
@@ -16,7 +16,7 @@ export default function LoginPage() {
     if (error) return setErrorText(error.statusText);
     setCurrentUser(user);
     navigate(`/users/${user.id}`);
-  };
+  };     
 
   if (currentUser) return <Navigate to="/" />;
 

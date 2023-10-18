@@ -5,17 +5,36 @@ import {
   Typography,
 } from "@mui/material";
 import FavoriteBtn from "../components/FavoriteBtn";
+import { CardMedia } from '@mui/material';
 
-export default function Place({ name, city, State, ratings }) {
+export default function Place({ name, city, type, state, ratings, photo }) {
+
   return (
     <>
-      <Card variant="outlined">
+      <Card variant="outlined" style={{
+        backgroundColor:'#efefef',
+        width:430+'px',
+        marginBottom:15+'px'
+      }}>
         <CardContent>
-          <Typography>{name}</Typography>
+          <div className="photo">
+            <img src={photo}  style={{
+              width:150,
+              height:120,
+            }}/>        
+            </div>
+          <Typography style={{
+            fontSize:25+'px',
+            display:'flex',
+            justifyContent:'center',
+            textAlign:'center',
+            fontWeight:'bold',
+          }}>{name}</Typography>
           <Typography>
-            {city}, {State}
+            {city}, {state}
           </Typography>
-          <Typography>{ratings}</Typography>
+          <Typography>Rating: {ratings}</Typography>
+          <Typography>{type}</Typography>
         </CardContent>
         <CardActionArea>
           <FavoriteBtn />

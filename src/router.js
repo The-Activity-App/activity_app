@@ -10,6 +10,9 @@ Router.use(addModelsToRequest);
 Router.get("/users", userController.list);
 Router.post("/users", userController.create);
 Router.get("/users/:id", userController.show);
+Router.delete("/users/:id", placeController.removeFavorite);
+Router.get("/users/:id", placeController.listAllFavorites);
+
 
 Router.post("/login", userController.login);
 Router.delete("/logout", userController.logout);
