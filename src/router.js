@@ -8,19 +8,16 @@ const Router = express.Router();
 Router.use(addModelsToRequest);
 
 Router.get("/users", userController.list);
-Router.post("/users", userController.create);
 Router.get("/users/:id", userController.show);
-Router.delete("/users/:id", placeController.removeFavorite);
-Router.get("/users/:id", placeController.listAllFavorites);
-
-
-Router.post("/login", userController.login);
-Router.delete("/logout", userController.logout);
+Router.get("/place/:id", placeController.listFavorite);
+Router.get("/placeFavorites/:id", placeController.listAllFavorites);
 Router.get("/me", userController.showMe);
 
-Router.get("/api/search", placeController.addFavorite);
-Router.get("/api/search", placeController.listFavorite);
-Router.get("/api/search", placeController.listAllFavorites);
+Router.post("/api/search", placeController.addFavorite);
+Router.post("/users", userController.create);
+Router.post("/login", userController.login);
+
+Router.delete("/logout", userController.logout);
 Router.delete("/api/search", placeController.removeFavorite);
 
 // These actions require authentication (only valid logged in users can do these things)

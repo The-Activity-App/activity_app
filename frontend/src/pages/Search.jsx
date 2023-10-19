@@ -32,8 +32,7 @@ export default function SearchPage() {
         const response = await fetch(url, options);
         const result = await response.json();
         setData(result.data);
-        setPhoto(result.data[0].photos_sample[0].photo_url);
-        // console.log(result.data)
+        console.log(result.data)
         // console.log('this is a business photo',result.data[0].photos_sample[0].photo_url)
         return result;
       } catch (error) {
@@ -112,6 +111,7 @@ export default function SearchPage() {
                   state={result.state}
                   ratings={result.rating}
                   type={result.type}
+                  price_level2={result.price_level}
                   photo={result.photos_sample[0].photo_url}
                 />
               ))}

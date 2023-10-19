@@ -6,27 +6,36 @@ const addFavorite = async (req, res) => {
       biz_id,
       name,
       address,
+      city,
+      state,
       type,
       working_hours,
       number,
       price_level,
+      photo_url,
+      website,
       rating,
       user_id,
-      emoji_rating,
-    }, // this req.body property is put here by the client
+      emoji_rating
+    },
+     // this req.body property is put here by the client
   } = req;
 
   const newFav = await Place.addFavorite(
     biz_id,
     name,
     address,
+    city,
+    state,
     type,
     working_hours,
     number,
     price_level,
+    photo_url,
+    website,
     rating,
     user_id,
-    emoji_rating,
+    emoji_rating
   );
   session.userId = user.id;
 

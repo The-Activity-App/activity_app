@@ -7,7 +7,22 @@ import {
 import FavoriteBtn from "../components/FavoriteBtn";
 import { CardMedia } from '@mui/material';
 
-export default function Place({ name, city, type, state, ratings, photo }) {
+export default function Place({           
+  biz_id,
+  name,
+  address,
+  city,
+  state,
+  type,
+  photo,
+  working_hours,
+  number,
+  price_level2,
+  photo_url,
+  website,
+  rating,
+  user_id,
+  emoji_rating }) {
 
   return (
     <>
@@ -18,7 +33,7 @@ export default function Place({ name, city, type, state, ratings, photo }) {
       }}>
         <CardContent>
           <div className="photo">
-            <img src={photo}  style={{
+            <img src={!photo ? "Undefined" : photo}  style={{
               width:150,
               height:120,
             }}/>        
@@ -33,8 +48,11 @@ export default function Place({ name, city, type, state, ratings, photo }) {
           <Typography>
             {city}, {state}
           </Typography>
-          <Typography>Rating: {ratings}</Typography>
+          <Typography>Rating:{rating}</Typography>
           <Typography>{type}</Typography>
+          {
+            !price_level2 ? "" : 'Price Level: '+ price_level2
+          }
         </CardContent>
         <CardActionArea>
           <FavoriteBtn />

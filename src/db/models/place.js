@@ -19,32 +19,38 @@ class Place {
     try {
       const result = await knex.raw(
         `INSERT INTO places (   
-        biz_id,
-        name,
-        address,
-        type,
-        working_hours,
-        number,
-        price_level,
-        rating,
-        user_id,
-        emoji_rating, 
-        is_favorited) 
+          biz_id,
+          name,
+          address,
+          city,
+          state,
+          type,
+          working_hours,
+          number,
+          price_level,
+          photo_url,
+          website,
+          rating,
+          user_id,
+          emoji_rating) 
         VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         RETURNING *`,
         [
           biz_id,
           name,
           address,
+          city,
+          state,
           type,
           working_hours,
           number,
           price_level,
+          photo_url,
+          website,
           rating,
           user_id,
-          emoji_rating,
-          is_favorited,
+          emoji_rating
         ]
       );
       console.log(result);
@@ -73,6 +79,7 @@ class Place {
   }
 
   static async listFav(favorite_id) {
+    console.log(favorite_id)
     try {
       const result = await knex.raw(
         `
@@ -87,8 +94,6 @@ class Place {
       return null;
     }
   }
-
-
 
   //list all favorites
   static async listAllFavorites(user_id) {
@@ -135,10 +140,10 @@ class Place {
 }
 
 // const testQueries = async () => {
-//   const favorite = await Place.addPlace(1, 2, 3, 4, 5, 6, 7, 8, 1, 10, false);
-//   console.log(favorite);
-//   const listPlace = await Place.listPlace(8);
-//   console.log("im listing the place", listPlace);
+//   // const favorite = await Place.addPlace(1, 2, 3, 4, 5, 6, 7, 8, 1, 10, false);
+//   // console.log(favorite);
+//   // const listPlace = await Place.listPlace(8);
+//   // console.log("im listing the place", listPlace);
 
 //   const listingAllFavorites = await Place.listAllFavorites(1);
 //   console.log("im listing favorites", listingAllFavorites);
