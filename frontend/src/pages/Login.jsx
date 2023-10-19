@@ -18,10 +18,10 @@ export default function LoginPage() {
     navigate(`/users/${user.id}`);
   };     
 
-  if (currentUser) return <Navigate to="/" />;
+  if (currentUser) return <Navigate to="/search" />;
 
   return <>
-    <img alt="logo" src=""/>
+    <img alt="logo" src="./"/>
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username</label>
       <input type="text" autoComplete="username" id="username" name="username" />

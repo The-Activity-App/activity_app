@@ -21,8 +21,7 @@ export default function Place({
   photo_url,
   website,
   rating,
-  user_id,
-  emoji_rating }) {
+  user_id }) {
 
   return (
     <>

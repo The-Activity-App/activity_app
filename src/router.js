@@ -13,7 +13,7 @@ Router.get("/place/:id", placeController.listFavorite);
 Router.get("/placeFavorites/:id", placeController.listAllFavorites);
 Router.get("/me", userController.showMe);
 
-Router.post("/api/search", placeController.addFavorite);
+Router.post("/api/searchFavorites", placeController.addFavorite);
 Router.post("/users", userController.create);
 Router.post("/login", userController.login);
 

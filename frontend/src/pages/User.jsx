@@ -9,12 +9,6 @@ import { Card, CardContent, Button, CardActionArea, Typography } from '@mui/mate
 import { grey, deepPurple } from '@mui/material/colors';
 import Place from "../components/PlaceComp";
 
-// const theme = createTheme({
-  //   palette: {
-    //     primary: grey,
-    //     secondary: deepPurple[800],
-    //   },
-    // });
     const primary = grey[900];
     const secondary = deepPurple['700'];
     

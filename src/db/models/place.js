@@ -3,22 +3,24 @@ const knex = require("../knex");
 //Define CRUD interface
 class Place {
   //add a place to the favorites table
-  static async addPlace(
+  static async addFavorite(
     biz_id,
     name,
     address,
+    city,
+    state,
     type,
     working_hours,
     number,
     price_level,
+    photo_url,
+    website,
     rating,
     user_id,
-    emoji_rating,
-    is_favorited
   ) {
     try {
       const result = await knex.raw(
-        `INSERT INTO places (   
+        `INSERT INTO favorites (   
           biz_id,
           name,
           address,
@@ -31,10 +33,9 @@ class Place {
           photo_url,
           website,
           rating,
-          user_id,
-          emoji_rating) 
+          user_id) 
         VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         RETURNING *`,
         [
           biz_id,
@@ -61,23 +62,7 @@ class Place {
     }
   }
 
-  //list a place
-  static async listPlace(id) {
-    try {
-      const result = await knex.raw(
-        `
-      SELECT * FROM places WHERE id=?
-      `,
-        [id]
-      );
-      console.log(result);
-      return result;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  }
-
+  //list a favorite
   static async listFav(favorite_id) {
     console.log(favorite_id)
     try {
@@ -106,18 +91,6 @@ class Place {
     } catch (error) {
       console.error(error);
       return null;
-    }
-  }
-
-  //add favorite
-  static async addFavorite(place_id, user_id){
-    try{
-      const result = await knex.raw(`
-        INSERT INTO favorites (place_id, user_id) VALUES (?, ?);
-      `[place_id, user_id])
-      return result.rows;
-    } catch(err){
-      return console.error(err)
     }
   }
 

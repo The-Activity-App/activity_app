@@ -16,7 +16,6 @@ const addFavorite = async (req, res) => {
       website,
       rating,
       user_id,
-      emoji_rating
     },
      // this req.body property is put here by the client
   } = req;
@@ -35,7 +34,6 @@ const addFavorite = async (req, res) => {
     website,
     rating,
     user_id,
-    emoji_rating
   );
   session.userId = user.id;
 
